@@ -16,6 +16,7 @@ export class UsersRepository implements IUsersRepository {
   }: IFindUserWithGamesDTO): Promise<User> {
     const user = await this.repository.findOne(user_id)
     if (!user) throw new Error("User doesn't not exist")
+    if (!user.games) throw new Error("User hasn't games")
     return user
   }
 
